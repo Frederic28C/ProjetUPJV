@@ -1,0 +1,36 @@
+oc_platform_homepage:
+    path:     /
+    defaults: { _controller: OCPlatformBundle:Hypair:Index }
+
+photo_page:
+    path:     /photo
+    defaults: {_controller: OCPlatformBundle:Hypair:Photo}
+
+admin_page:
+    path:     /administration
+    defaults: { _controller: OCPlatformBundle:Hypair:Administration }
+
+ajout_photo_page:
+    path:     /addPhoto/{event}
+    defaults:
+            _controller: OCPlatformBundle:Hypair:addPhoto
+            event: add
+    requirements:
+            event: add|success|failed
+
+ajout_page:
+    path:     /add
+    defaults: { _controller: OCPlatformBundle:Hypair:Add }
+#    requirements:
+#            id:   hypairball/admin
+
+login:
+    path: /login
+    defaults:
+        _controller: OCUserBundle:Security:login
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout

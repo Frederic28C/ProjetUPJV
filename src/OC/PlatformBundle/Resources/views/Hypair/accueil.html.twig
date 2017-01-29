@@ -1,0 +1,33 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<p class="col-md-offset-2">
+    <iframe width="800" height="450" src="https://www.youtube.com/embed/f92yfPFl9NY" frameborder="0" allowfullscreen>
+
+    </iframe>
+</p>
+{% block javascript %}
+    <script type="text/javascript">
+        console.log ('test_tab');
+        $(document).ready( function(){
+            $('.tabs').click(function(){
+                var href = $(this).attr('href');
+                $('li.active').removeClass("active");
+                console.log ('remove');
+                $('#menu').hide().load(href).fadeIn('normal');
+                $( this ).parent().addClass( "active" );
+                return false;
+            });
+        });
+    </script>
+    <script>console.log ('test'); </script>
+{% endblock %}
+{% endblock %}

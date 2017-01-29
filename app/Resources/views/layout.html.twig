@@ -1,0 +1,64 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Hyp'airBall{% endblock %}</title>
+
+    {% block stylesheets %}
+        {# On charge le CSS de bootstrap depuis le site directement #}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+        {% stylesheets filter="scssphp" output="css/app.css"
+        "assets/scss/bootstrap.scss"
+        "assets/scss/font-awesome.scss"
+        "/web/bundles/oc/css/*.css"
+        "web/css/*.css"
+        "style.css"
+        "main.css"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div id="header">
+        <h1>Hyp'airball</h1>
+        <p class="slogan">
+            Une activité renversante & gonflée à bloc !
+        </p>
+
+    </div>
+    {% include "OCPlatformBundle::menu.html.twig" %}
+
+    <div class="row">
+        <div id="content">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <hr>
+
+    {% include "OCPlatformBundle::footer.html.twig" %}
+</div>
+
+
+{% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% endblock %}
+
+</body>
+</html>
