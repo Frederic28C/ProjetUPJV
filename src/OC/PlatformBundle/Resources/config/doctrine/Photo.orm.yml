@@ -1,0 +1,28 @@
+OC\PlatformBundle\Entity\Photo:
+    type: entity
+    table: null
+    repositoryClass: OC\PlatformBundle\Repository\PhotoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+        title:
+            type: string
+            length: 255
+        content:
+            type: string
+            length: 255
+            nullable: true
+        url:
+            type: string
+            length: 255
+            unique: true
+        alt:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
