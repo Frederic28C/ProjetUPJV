@@ -11,12 +11,13 @@ admin_page:
     defaults: { _controller: OCPlatformBundle:Hypair:Administration }
 
 ajout_photo_page:
-    path:     /addPhoto/{event}
+    path:     /addPhoto
+#    /{event}
     defaults:
-            _controller: OCPlatformBundle:Hypair:addPhoto
-            event: add
-    requirements:
-            event: add|success|failed
+            _controller: OCPlatformBundle:AddPhoto:add
+#            event: add
+#    requirements:
+#            event: add|success|failed
 
 ajout_page:
     path:     /add

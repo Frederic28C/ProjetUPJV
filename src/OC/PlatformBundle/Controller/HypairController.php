@@ -33,7 +33,26 @@ class HypairController extends Controller
 
     public function PhotoAction()
     {
-        return $this->render('OCPlatformBundle:Hypair:photo.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $hypairRepository = $em->getRepository('OCPlatformBundle:hypair');
+
+        $listHypair = $hypairRepository->findAll();
+
+        foreach ($listHypair as $list) {
+            $content = $list->getContent();
+            $title =  $list->getTitle();
+            $date = $list->getDate();
+            $liste[] = array ($date, $title, $content);
+
+        }
+
+        return $this->render(
+            'OCPlatformBundle:Hypair:photo.html.twig',
+            array(
+                'hypair' => $hypairRepository,
+                'list' => $liste,
+            )
+            );
     }
 
 

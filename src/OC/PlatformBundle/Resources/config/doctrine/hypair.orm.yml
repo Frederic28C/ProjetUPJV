@@ -1,0 +1,29 @@
+OC\PlatformBundle\Entity\hypair:
+    type: entity
+    table: null
+    repositoryClass: OC\PlatformBundle\Repository\hypairRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: string
+            length: '10'
+        title:
+            type: string
+            length: 255
+        content:
+            type: string
+            length: 255
+            nullable: true
+        url:
+            type: string
+            length: 255
+            unique: true
+        alt:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

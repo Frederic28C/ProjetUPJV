@@ -8,10 +8,18 @@
 {% endblock %}
 
 {% block body %}
-
-testssss
+    <div class="row">
+        {% for liste in list %}
+            {% for lists in liste %}
+                <div class="col-md-12">
+                    <p>{{ lists }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
 
 {% block javascript %}
 {{ parent() }}
 {% endblock %}
 {% endblock %}
+
