@@ -36,9 +36,7 @@ class AddPhotoController extends Controller
         $formBuilder
             ->add('date',    TextType::class)
             ->add('title',   TextType::class)
-            ->add('content', TextareaType::class)
-            ->add('url',     FileType::class)
-            ->add('alt',     TextType::class)
+            ->add('file',     FileType::class)
             ->add('save',    SubmitType::class)
         ;
         // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
@@ -49,14 +47,27 @@ class AddPhotoController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 3) Encode the password (you could also do this via Doctrine listener)
+            $file = $oPhoto->getFile();
+
+            // Generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('photo'),
+                $fileName
+            );
+
+            // Update the 'brochure' property to store the PDF file name
+            // instead of its contents
+            $oPhoto->setFile($fileName);
 
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
             $em->persist($oPhoto);
             $em->flush();
 
-            return $this->render('OCPlatformBundle:Hypair:accueil.html.twig');
+            return $this->render('OCPlatformBundle:Hypair:photo.html.twig');
         }
 
         // On passe la méthode createView() du formulaire à la vue

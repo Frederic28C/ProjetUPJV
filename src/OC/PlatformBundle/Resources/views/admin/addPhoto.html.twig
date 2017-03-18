@@ -51,41 +51,15 @@
 
             <div class="form-group">
                 {# Génération du label. #}
-                {{ form_label(form.content, "Contenu", {'label_attr': {'class': 'col-md-12 control-label'}}) }}
+                {{ form_label(form.file, "Nom du fichier", {'label_attr': {'class': 'col-md-12 control-label'}}) }}
 
                 <div class="col-md-12">
                     {# Génération de l'input. #}
-                    {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
                 </div>
 
                 {# Affichage des erreurs pour ce champ précis. #}
-                {{ form_errors(form.content) }}
-            </div>
-
-            <div class="form-group">
-                {# Génération du label. #}
-                {{ form_label(form.alt, "Auteur", {'label_attr': {'class': 'col-md-12 control-label'}}) }}
-
-                <div class="col-md-12">
-                    {# Génération de l'input. #}
-                    {{ form_widget(form.alt, {'attr': {'class': 'form-control'}}) }}
-                </div>
-
-                {# Affichage des erreurs pour ce champ précis. #}
-                {{ form_errors(form.alt) }}
-            </div>
-
-            <div class="form-group">
-                {# Génération du label. #}
-                {{ form_label(form.url, "Nom du fichier", {'label_attr': {'class': 'col-md-12 control-label'}}) }}
-
-                <div class="col-md-12">
-                    {# Génération de l'input. #}
-                    {{ form_widget(form.url, {'attr': {'class': 'form-control'}}) }}
-                </div>
-
-                {# Affichage des erreurs pour ce champ précis. #}
-                {{ form_errors(form.url) }}
+                {{ form_errors(form.file) }}
             </div>
 
 

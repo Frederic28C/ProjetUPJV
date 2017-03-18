@@ -26,7 +26,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HypairController extends Controller
 {
-    public function IndexAction()
+
+public function IndexAction()
     {
         return $this->render('OCPlatformBundle:Hypair:accueil.html.twig');
     }
@@ -38,11 +39,17 @@ class HypairController extends Controller
 
         $listHypair = $hypairRepository->findAll();
 
+        $liste = array();
+
         foreach ($listHypair as $list) {
-            $content = $list->getContent();
             $title =  $list->getTitle();
             $date = $list->getDate();
-            $liste[] = array ($date, $title, $content);
+            $image = $list->getFile();
+            $liste[] = array (
+                'date' => $date,
+                'title' => $title,
+                'image' => $image
+            );
 
         }
 

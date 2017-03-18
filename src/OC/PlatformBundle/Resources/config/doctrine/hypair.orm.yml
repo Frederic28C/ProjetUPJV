@@ -15,15 +15,7 @@ OC\PlatformBundle\Entity\hypair:
         title:
             type: string
             length: 255
-        content:
-            type: string
-            length: 255
-            nullable: true
-        url:
-            type: string
-            length: 255
-            unique: true
-        alt:
+        file:
             type: string
             length: 255
     lifecycleCallbacks: {  }

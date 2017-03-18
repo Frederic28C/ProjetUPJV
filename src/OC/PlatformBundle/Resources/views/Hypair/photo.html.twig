@@ -10,11 +10,20 @@
 {% block body %}
     <div class="row">
         {% for liste in list %}
-            {% for lists in liste %}
-                <div class="col-md-12">
-                    <p>{{ lists }}</p>
+                <div class="col-md-3 col-md-offset-2">
+                    <div class="row well">
+                        <p>
+                            {{ liste['date']}}
+                        </p>
+                        <p>
+                            {{ liste['title']}}
+                        </p>
+                        <p>
+                            {{ liste['image']}}
+                        </p>
+                        <br /><br />
+                    </div>
                 </div>
-            {% endfor %}
         {% endfor %}
     </div>
 
