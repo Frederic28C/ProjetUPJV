@@ -1,0 +1,21 @@
+OC\PlatformBundle\Entity\Video:
+    type: entity
+    table: null
+    repositoryClass: OC\PlatformBundle\Repository\VideoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+        url:
+            type: string
+            length: 255
+            unique: true
+        alt:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

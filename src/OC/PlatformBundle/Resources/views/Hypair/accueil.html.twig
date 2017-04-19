@@ -2,7 +2,13 @@
 
 {% block title %}
     Accueil - {{ parent() }}
+
 {% endblock %}
+
+{% block menu %}
+    {% include "OCPlatformBundle::menu.html.twig" %}
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}

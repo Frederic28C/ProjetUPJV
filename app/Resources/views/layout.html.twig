@@ -29,16 +29,30 @@
 
 <body>
 
+<div class="row">
 <div class="container">
+    <div class="row">
+        <div class="logo col-md-offset-6">
+            06 95 28 80 47
+            <a target="_blank" href="https://www.facebook.com/Shoot-Bulle-28-823778397634002/?fref=ts">   <img class="logo facebook" src="/img/facebook.png"/>  </a>
+        </div>
+        <div class="logo">
+            <a target="_blank" href="https://www.youtube.com/channel/UC1H6umhlqWrnqTb6lhFr6gw"><img class="logo youtube" src="/img/youtube.png"/></a>
+        </div>
+        <div id="header">
+            <img class ="layout-photo" src="/img/logo.jpg"/>
+            <p class="slogan">
+                Une activité renversante & gonflée à bloc !
+            </p>
 
-    <div id="header">
-        <h1>Hyp'airball</h1>
-        <p class="slogan">
-            Une activité renversante & gonflée à bloc !
-        </p>
-
+        </div>
     </div>
-    {% include "OCPlatformBundle::menu.html.twig" %}
+    <div class="row">
+        <div class="col-md-12">
+            {% block menu %}
+            {% endblock %}
+        </div>
+    </div>
 
     <div class="row">
         <div id="content">
@@ -52,6 +66,7 @@
     <hr>
 
     {% include "OCPlatformBundle::footer.html.twig" %}
+</div>
 </div>
 
 

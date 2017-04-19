@@ -2,35 +2,36 @@
 /**
  * Created by PhpStorm.
  * User: fred
- * Date: 29/01/17
- * Time: 15:48
+ * Date: 16/04/17
+ * Time: 14:02
  */
 
 namespace OC\PlatformBundle\Controller;
 
 
-use OC\PlatformBundle\Entity\hypair;
+use DateTime;
+use OC\PlatformBundle\Entity\Video;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpFoundation\Request;
 
-class AddPhotoController extends Controller
+class AddVideoController extends Controller
 {
     public function addAction(Request $request)
     {
-        $oPhoto = new hypair();
+        // On crée un objet Advert
+        $oVideo = new Video();
 
         // On crée le FormBuilder grâce au service form factory
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $oPhoto);
+        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $oVideo);
 
         // On ajoute les champs de l'entité que l'on veut à notre formulaire
         $formBuilder
             ->add('date',    TextType::class)
-            ->add('title',   TextType::class)
-            ->add('file',     FileType::class)
+            ->add('url',     TextType::class)
+            ->add('alt',     TextType::class)
             ->add('save',    SubmitType::class)
         ;
         // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
@@ -41,24 +42,11 @@ class AddPhotoController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $file = $oPhoto->getFile();
-
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('photo'),
-                $fileName
-            );
-
-            // Update the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $oPhoto->setFile($fileName);
+            $oVideo->setDate(DateTime::createFromFormat("d/m/Y", $oVideo->getDate()));
 
             // 4) save the User!
             $em = $this->getDoctrine()->getManager();
-            $em->persist($oPhoto);
+            $em->persist($oVideo);
             $em->flush();
 
             return $this->render('OCPlatformBundle:Hypair:accueil.html.twig');
@@ -66,12 +54,10 @@ class AddPhotoController extends Controller
 
         // On passe la méthode createView() du formulaire à la vue
         // afin qu'elle puisse afficher le formulaire toute seule
-        return $this->render('OCPlatformBundle:admin:addPhoto.html.twig', array(
+        return $this->render('OCPlatformBundle:admin:addVideo.html.twig', array(
             'form' => $form->createView(),
         ));
 
 
     }
-
-
 }

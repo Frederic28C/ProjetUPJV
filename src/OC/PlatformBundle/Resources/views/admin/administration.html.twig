@@ -3,6 +3,11 @@
 {% block title %}
     Administration - {{ parent() }}
 {% endblock %}
+
+{% block menu %}
+    {% include "OCPlatformBundle::menuAdmin2.html.twig" %}
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
