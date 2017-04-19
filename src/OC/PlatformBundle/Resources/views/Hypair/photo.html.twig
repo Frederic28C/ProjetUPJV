@@ -3,6 +3,11 @@
 {% block title %}
     Ajout - {{ parent() }}
 {% endblock %}
+
+{% block menu %}
+    {% include "OCPlatformBundle::menu.html.twig" %}
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
@@ -10,11 +15,15 @@
 {% block body %}
     <div class="row">
         {% for liste in list %}
-            {% for lists in liste %}
-                <div class="col-md-12">
-                    <p>{{ lists }}</p>
+                <div class="col-md-4">
+                        <span>
+                            <img style="width: auto; height: 15em; position: relative"
+                                 class="photo" src="uploads/photo/{{ liste['image']}}">
+
+                            </img>
+                        </span>
                 </div>
-            {% endfor %}
+            </br>
         {% endfor %}
     </div>
 

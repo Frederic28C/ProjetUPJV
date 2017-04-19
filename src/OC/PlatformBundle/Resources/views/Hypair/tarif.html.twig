@@ -1,0 +1,22 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+
+{% block menu %}
+    {% include "OCPlatformBundle::menu.html.twig" %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel='stylesheet' href="fullcalendar/fullcalendar.css" />
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-10">
+            <iframe src="https://calendar.google.com/calendar/embed?src=hypairball%40gmail.com&ctz=Europe/Paris" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+{% endblock %}

@@ -26,9 +26,51 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HypairController extends Controller
 {
+
     public function IndexAction()
     {
         return $this->render('OCPlatformBundle:Hypair:accueil.html.twig');
+    }
+
+    public function ReservationAction()
+    {
+        return $this->render('OCPlatformBundle:Hypair:tarif.html.twig');
+    }
+
+    public function ProposAction()
+    {
+        return $this->render('OCPlatformBundle:Hypair:propos.html.twig');
+    }
+
+    public function VideoAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $videoRepository = $em->getRepository('OCPlatformBundle:Video');
+
+        $listVideo = $videoRepository->findAll();
+
+        $liste = array();
+
+        foreach ($listVideo as $list) {
+            $title =  $list->getAlt();
+            $date = $list->getDate()->format('d/m/Y');
+            $url = $list->getUrl();
+
+            $liste[] = array (
+                'date' => $date,
+                'title' => $title,
+                'url' => $url
+            );
+
+        }
+
+        return $this->render(
+            'OCPlatformBundle:Hypair:video.html.twig',
+            array(
+                'video' => $videoRepository,
+                'list' => $liste,
+            )
+        );
     }
 
     public function PhotoAction()
@@ -38,11 +80,17 @@ class HypairController extends Controller
 
         $listHypair = $hypairRepository->findAll();
 
+        $liste = array();
+
         foreach ($listHypair as $list) {
-            $content = $list->getContent();
             $title =  $list->getTitle();
             $date = $list->getDate();
-            $liste[] = array ($date, $title, $content);
+            $image = $list->getFile();
+            $liste[] = array (
+                'date' => $date,
+                'title' => $title,
+                'image' => $image
+            );
 
         }
 
@@ -52,71 +100,7 @@ class HypairController extends Controller
                 'hypair' => $hypairRepository,
                 'list' => $liste,
             )
-            );
-    }
-
-
-    public function AdddAction(Request $request)
-    {
-        $advert = new Image();
-
-        $form = $this->createForm(ImageType::class, $advert);
-
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $advert->getImage()->upload();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($advert);
-            $em->flush();
-
-            $request->getSession()->getFlashBag()->add('notice', 'Fichier bien enregistrée.');
-
-            return $this->redirectToRoute('ajout_page');
-        }
-
-        return $this->render('OCPlatformBundle:admin:ajout.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
-    public function addAction(Request $request)
-    {
-        // Création de l'entité Advert
-        $advert = new Advert();
-        $advert->setTitle('Recherche développeur Symfony.');
-        $advert->setAuthor('Alexandre');
-        $advert->setContent("Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…");
-
-        // Création de l'entité Image
-        $image = new Image();
-        $image->setUrl('http://sdz-upload.s3.amazonaws.com/prod/upload/job-de-reve.jpg');
-        $image->setAlt('Job de rêve');
-
-        // On lie l'image à l'annonce
-        $advert->setImage($image);
-
-        // On récupère l'EntityManager
-        $em = $this->getDoctrine()->getManager();
-
-        // Étape 1 : On « persiste » l'entité
-        $em->persist($advert);
-
-        // Étape 1 bis : si on n'avait pas défini le cascade={"persist"},
-        // on devrait persister à la main l'entité $image
-        // $em->persist($image);
-
-        // Étape 2 : On déclenche l'enregistrement
-        $em->flush();
-
-        // Reste de la méthode qu'on avait déjà écrit
-        if ($request->isMethod('POST')) {
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-
-            // Puis on redirige vers la page de visualisation de cettte annonce
-            return $this->redirectToRoute('oc_platform_view', array('id' => $advert->getId()));
-        }
-
-        // Si on n'est pas en POST, alors on affiche le formulaire
-        return $this->render('OCPlatformBundle:Advert:add.html.twig', array('advert' => $advert));
+        );
     }
 
     public function AdministrationAction(Request $request)

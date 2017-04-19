@@ -105,3 +105,8 @@ h1, p.slogan, .form-admin, #footer{
         background-color: #ff9d00;
     }
 }
+
+.photo {
+    width: 1em;
+    height: auto;
+}

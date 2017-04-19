@@ -2,9 +2,21 @@ oc_platform_homepage:
     path:     /
     defaults: { _controller: OCPlatformBundle:Hypair:Index }
 
+video_page:
+    path: /video
+    defaults: {_controller: OCPlatformBundle:Hypair:Video}
+
+reservation_page:
+    path: /reservation
+    defaults: {_controller: OCPlatformBundle:Hypair:Reservation}
+
 photo_page:
     path:     /photo
     defaults: {_controller: OCPlatformBundle:Hypair:Photo}
+
+propos_page:
+    path:     /propos
+    defaults: {_controller: OCPlatformBundle:Hypair:Propos}
 
 admin_page:
     path:     /administration
@@ -12,12 +24,13 @@ admin_page:
 
 ajout_photo_page:
     path:     /addPhoto
-#    /{event}
     defaults:
             _controller: OCPlatformBundle:AddPhoto:add
-#            event: add
-#    requirements:
-#            event: add|success|failed
+
+ajout_video_page:
+    path:     /addVideo
+    defaults:
+            _controller: OCPlatformBundle:AddVideo:add
 
 ajout_page:
     path:     /add

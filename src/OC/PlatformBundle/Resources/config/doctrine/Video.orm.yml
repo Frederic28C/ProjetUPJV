@@ -1,7 +1,7 @@
-OC\PlatformBundle\Entity\hypair:
+OC\PlatformBundle\Entity\Video:
     type: entity
     table: null
-    repositoryClass: OC\PlatformBundle\Repository\hypairRepository
+    repositoryClass: OC\PlatformBundle\Repository\VideoRepository
     id:
         id:
             type: integer
@@ -10,12 +10,12 @@ OC\PlatformBundle\Entity\hypair:
                 strategy: AUTO
     fields:
         date:
-            type: string
-            length: '10'
-        title:
+            type: datetime
+        url:
             type: string
             length: 255
-        file:
+            unique: true
+        alt:
             type: string
             length: 255
     lifecycleCallbacks: {  }

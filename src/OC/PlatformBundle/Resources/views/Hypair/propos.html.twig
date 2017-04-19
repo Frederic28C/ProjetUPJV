@@ -1,0 +1,30 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+
+{% block menu %}
+    {% include "OCPlatformBundle::menu.html.twig" %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-offset-1 col-md-7">
+            <p>
+                Hyp'airBall est une société créé par Jean-François COMTE.
+                <br/>Débutée en janvier 2015, cette activité rencontre de plus en plus de succès.
+                <br/>Cette activité peut être effectuée en salle à Lucé : 22 rues geoges varlet, 28110 Lucé. Ou en plein air sur le terrain de foot de Bonville. Certains déplacements sont acceptables si un terrain de 300m² minimum et propre est disponible.
+                <br/>Par groupe de 8 minimum venez vous amuser!
+            </p>
+            <p>
+                <br/>Pour tout contact soit par mail : shootbulle28@laposte.net ou par téléphone au 06 95 28 80 47
+            </p>
+        </div>
+    </div>
+{% endblock %}
